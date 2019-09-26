@@ -18,13 +18,26 @@
         {{!-- Interact with Existing Burgers  --}}
         <div class="col-6">
             <table>
-                {{#each burgers}}
+                {{#each unEatenBurgers}}
                 <tr>
                     <td>
                         {{this.burger}}
                     </td>
                     <td>
                         <button id="eatBurger">Eat Burger</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+            <hr>
+            <table>
+                {{#each eatenBurgers}}
+                <tr>
+                    <td>
+                        {{this.burger}}
+                    </td>
+                    <td>
+                        <button id="eatBurger" disabled>Eat Burger</button>
                     </td>
                 </tr>
                 {{/each}}

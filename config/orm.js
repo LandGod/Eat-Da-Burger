@@ -13,7 +13,7 @@ var orm = {
         })
     },
 
-    updateWhere: function(tableInput, colsToAdd, colValues) {
+    addItem: function(tableInput, colsToAdd, colValues) {
 
         // Check input
         if (colsToAdd.length !== colValues.length) {throw('Bad Query: Number of columns and number of values not the same. orm.js line 21.')};
@@ -30,7 +30,8 @@ var orm = {
         queryString += ')';
 
         // Concatenate both input lists into a single input list for connection.query
-        let allInputs = colsToAdd.push(...colValues);
+        let allInputs = [tableInput].push(...colsToAdd)
+        allInputs.push(...colValues);
 
         // Return thenable query promise with inputs plugged in
         return new Promise((resolve, reject) => {
@@ -42,6 +43,21 @@ var orm = {
             });
         });
     },
+
+    editWithID: function(tableInput,id, columnToEdit, newData) {
+        
+        let queryString = "UPDATE ?? SET ?? = ? WHERE id = ?"
+
+        return new Promise((resolve, reject) => {
+            connection.query(queryString, [tableInput, columnToEdit, newData, id], function (err, result) {
+
+                reject(err);
+
+                resolve(result);
+
+            });
+        })
+    }
 
 };
 

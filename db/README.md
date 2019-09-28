@@ -1,0 +1,2 @@
+# Eat Da Burger!
+Eat Da Burger is proof of concept and practice project for utilizing heroku with mySQL and express. Because the point of this excersise was to foucs on the back end, aesthtics were basically ignored. Check back soon for a much slicker project coming up!

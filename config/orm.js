@@ -6,7 +6,7 @@ var orm = {
         return new Promise((resolve, reject) => {
             connection.query(queryString, [tableInput, colToSearch, valOfCol], function (err, result) {
 
-                reject(err)
+                if (err) {reject(err)};
 
                 resolve(result);
             });
@@ -14,6 +14,8 @@ var orm = {
     },
 
     addItem: function(tableInput, colsToAdd, colValues) {
+
+        console.log(colValues)
 
         // Check input
         if (colsToAdd.length !== colValues.length) {throw('Bad Query: Number of columns and number of values not the same. orm.js line 21.')};
@@ -30,14 +32,22 @@ var orm = {
         queryString += ')';
 
         // Concatenate both input lists into a single input list for connection.query
-        let allInputs = [tableInput].push(...colsToAdd)
+        let allInputs = [];
+        allInputs.push(tableInput);
+        allInputs.push(...colsToAdd);
         allInputs.push(...colValues);
+
+        console.log(colsToAdd)
+        console.log(colValues)
+        console.log('-----------------')
+        console.log(queryString)
+        console.log(allInputs)
 
         // Return thenable query promise with inputs plugged in
         return new Promise((resolve, reject) => {
             connection.query(queryString, allInputs, function (err, result) {
 
-                reject(err)
+                if (err) {reject(err)};
 
                 resolve(result);
             });
@@ -51,7 +61,7 @@ var orm = {
         return new Promise((resolve, reject) => {
             connection.query(queryString, [tableInput, columnToEdit, newData, id], function (err, result) {
 
-                reject(err);
+                if (err) {reject(err)};
 
                 resolve(result);
 

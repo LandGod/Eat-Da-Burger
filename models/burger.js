@@ -1,28 +1,38 @@
-var ORM = reqire('../config/orm.js');
+var ORM = require('../config/orm.js');
 
 var burger = {
     commitBurger: function (burgerData) {
         return new Promise((resolve, reject) => {
-            ORM.addItem('burgers', ['burgerInfo', 'eaten'], [burgerData, false]).then((data) => {
-
-                reject(data)
-
-                resolve(data)
-            })
+            ORM.addItem('burgers', ['burgerInfo'], [burgerData]).then(
+                (result) => { resolve(result) }).catch((err) => { reject(err) }
+            )
         })
     },
 
     eatBurger: function (burgerID) {
-
         return new Promise((resolve, reject) => {
-            ORM.editWithID('burgers', burgerID, 'eaten', true).then((data) => {
+            ORM.editWithID('burgers', burgerID, 'eaten', 1).then(
+                (result) => { resolve(result) }).catch((err) => { reject(err) }
+            )
+        })
+    },
 
-                reject(data)
+    getUneaten: function () {
+        return new Promise((resolve, reject) => {
+            ORM.selectWhere('burgers', 'eaten', 0).then(
+                (result) => { resolve(result) }).catch((err) => { reject(err) }
+                )
+        })
+    },
 
-                resolve(data)
-            })
+    getEaten: function () {
+        return new Promise((resolve, reject) => {
+            ORM.selectWhere('burgers', 'eaten', 1).then(
+                (result) => { resolve(result) }).catch((err) => { reject(err) }
+                )
         })
     }
+
 };
 
-module.exports(burger);
+module.exports = burger;

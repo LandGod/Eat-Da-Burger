@@ -3,9 +3,6 @@ console.log('JS File loaded successfully.')
 $('#createBurger').click(function (event) {
     event.preventDefault();
 
-    console.log('DEBUG: Activated submit function');
-    console.log($('#newBurgerIn').val())
-
     $.ajax({
         method: "POST",
         url: "/api/burgers",
@@ -19,9 +16,6 @@ $('#createBurger').click(function (event) {
 
 $('.eatBurgerButton').click(function (event) {
     event.preventDefault();
-
-    console.log('DEBUG: Activated eatBurger function')
-    console.log($('#newBurgerIn').val())
 
     $.ajax({
         method: "PUT",

@@ -1,3 +1,14 @@
-h6 {
-    /* do nothing */
+h1, h2, h3 {
+    font-family: 'Mansalva', cursive;
+}
+
+.burgerBox {
+    max-height: 80vh;
+    max-width: 40vw;
+    overflow: auto;
+}
+
+.burgerBox .row {
+    max-width:100%;
+    overflow: hidden;
 }

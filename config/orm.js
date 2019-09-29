@@ -15,8 +15,6 @@ var orm = {
 
     addItem: function(tableInput, colsToAdd, colValues) {
 
-        console.log(colValues)
-
         // Check input
         if (colsToAdd.length !== colValues.length) {throw('Bad Query: Number of columns and number of values not the same. orm.js line 21.')};
 
@@ -36,12 +34,6 @@ var orm = {
         allInputs.push(tableInput);
         allInputs.push(...colsToAdd);
         allInputs.push(...colValues);
-
-        console.log(colsToAdd)
-        console.log(colValues)
-        console.log('-----------------')
-        console.log(queryString)
-        console.log(allInputs)
 
         // Return thenable query promise with inputs plugged in
         return new Promise((resolve, reject) => {
